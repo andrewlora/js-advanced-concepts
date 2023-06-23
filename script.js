@@ -26,6 +26,37 @@ console.log(fn2(200));
 console.log(fn2(2003));
 console.log(fn2(2011));
 
+// problem
+let view;
+function initialize() {
+  view = "🏠";
+  console.log("view has been initialized");
+}
+// abuse many invocations
+console.log(initialize());
+console.log(initialize());
+console.log(initialize());
+console.log("********************************");
+// console.log(view);
+
+// solution
+
+function initialize2() {
+  let counter = 0;
+  return function () {
+    if (counter > 0) return;
+    else {
+      counter++;
+      console.log("view has been initialized");
+    }
+  };
+}
+let fnIni = initialize2();
+console.log(fnIni.counter);
+console.log(fnIni());
+console.log(fnIni());
+console.log(fnIni());
+
 // 2: Encapsulation
 
 ///////////////////////////////////////////////////////////////
