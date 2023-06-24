@@ -7,24 +7,24 @@ function heavyDuty(index) {
   console.log("created array");
   return bigArray[index];
 }
-console.log(heavyDuty(20));
-console.log(heavyDuty(200));
-console.log(heavyDuty(2003));
-console.log(heavyDuty(2011));
+// console.log(heavyDuty(20));
+// console.log(heavyDuty(200));
+// console.log(heavyDuty(2003));
+// console.log(heavyDuty(2011));
 
 function heavyDuty2() {
   const bigArray = new Array(7000).fill("😃");
-  console.log("created array");
+  // console.log("created array");
   return function (index) {
     return bigArray[index];
   };
 }
 
 const fn2 = heavyDuty2();
-console.log(fn2(20));
-console.log(fn2(200));
-console.log(fn2(2003));
-console.log(fn2(2011));
+// console.log(fn2(20));
+// console.log(fn2(200));
+// console.log(fn2(2003));
+// console.log(fn2(2011));
 
 // problem
 let view;
@@ -33,10 +33,10 @@ function initialize() {
   console.log("view has been initialized");
 }
 // abuse many invocations
-console.log(initialize());
-console.log(initialize());
-console.log(initialize());
-console.log("********************************");
+// console.log(initialize());
+// console.log(initialize());
+// console.log(initialize());
+// console.log("********************************");
 // console.log(view);
 
 // solution
@@ -47,19 +47,42 @@ function initialize2() {
     if (counter > 0) return;
     else {
       counter++;
-      console.log("view has been initialized");
+      // console.log("view has been initialized");
     }
   };
 }
 let fnIni = initialize2();
-console.log(fnIni.counter);
-console.log(fnIni());
-console.log(fnIni());
-console.log(fnIni());
+// console.log(fnIni.counter);
+// console.log(fnIni());
+// console.log(fnIni());
+// console.log(fnIni());
 
 // 2: Encapsulation
 
 ///////////////////////////////////////////////////////////////
+
+const array = [1, 2, 3, 4, 5, 6, 7];
+// for (var index = 0; index < array.length; index++) {
+for (let index = 0; index < array.length; index++) {
+  const element = array[index];
+  setTimeout(() => {
+    // console.log("I am at index: ", index);
+  }, 3000);
+}
+
+const array2 = [1, 2, 3, 4, 5, 6, 7];
+// for (var index = 0; index < array.length; index++) {
+for (var index = 0; index < array2.length; index++) {
+  const element = array2[index];
+  (function (clousureIndex) {
+    setTimeout(function () {
+      console.log("I am at index: ", clousureIndex);
+    }, 3000);
+  })(index);
+}
+
+///////////////////////////////////////////////////////////////
+
 function a() {
   let grandpa = "grandpa";
   return function b() {
