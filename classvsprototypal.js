@@ -115,5 +115,12 @@ class Titan extends Character {
   }
 }
 
+class Ogre extends Character {
+  constructor(name, weapon, color) {
+    super(name, weapon);
+    this.color = color;
+  }
+}
+
 const dolby = new Titan("Dolby", "Cloth", "house");
 console.log("dolby ", dolby.attack());
