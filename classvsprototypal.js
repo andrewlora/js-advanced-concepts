@@ -120,7 +120,36 @@ class Ogre extends Character {
     super(name, weapon);
     this.color = color;
   }
+  makeFort() {
+    return "Strongest fort in the world made";
+  }
 }
 
 const dolby = new Titan("Dolby", "Cloth", "house");
 console.log("dolby ", dolby.attack());
+
+const shrek = new Ogre("Shrek", "Arm", "Green");
+console.log(shrek.makeFort());
+
+class Employee {
+  #name = "Test"; // private field
+  setName(name) {
+    this.#name = name;
+  }
+}
+const emp = new Employee();
+emp.#name = "New"; // error
+emp.setName("New"); // ok
+
+class Employee2 {
+  #name = "Test";
+  constructor(name) {
+    this.#setName(name); // ok
+  }
+  #setName(name) {
+    // Private method
+    this.#name = name;
+  }
+}
+const emp2 = new Employee2("New"); // ok
+emp2.#setName("New"); // error
