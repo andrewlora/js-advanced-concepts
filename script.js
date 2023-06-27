@@ -58,8 +58,24 @@ let fnIni = initialize2();
 // console.log(fnIni());
 
 // 2: Encapsulation
+// ********************************** Compose **********************************************
 
-///////////////////////////////////////////////////////////////
+// const compose = (f, g) => (a) => f(g(a));
+// const sum1 = (num) => num + 1;
+// console.log("Compose", compose(sum1, sum1)(5));
+
+function compose(f, g) {
+  return function (a) {
+    return f(g(a));
+  };
+}
+function sum1(num) {
+  return num + 1;
+}
+
+console.log("Compose", compose(sum1, sum1)(5));
+
+// *****************************************************************
 
 const array = [1, 2, 3, 4, 5, 6, 7];
 // for (var index = 0; index < array.length; index++) {
