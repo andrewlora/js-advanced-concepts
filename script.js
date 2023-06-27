@@ -60,18 +60,17 @@ let fnIni = initialize2();
 // 2: Encapsulation
 // ********************************** Compose **********************************************
 
-// const compose = (f, g) => (a) => f(g(a));
-// const sum1 = (num) => num + 1;
-// console.log("Compose", compose(sum1, sum1)(5));
+const compose = (f, g) => (a) => f(g(a));
+const sum1 = (num) => num + 1;
 
-function compose(f, g) {
-  return function (a) {
-    return f(g(a));
-  };
-}
-function sum1(num) {
-  return num + 1;
-}
+// function compose(f, g) {
+//   return function (a) {
+//     return f(g(a));
+//   };
+// }
+// function sum1(num) {
+//   return num + 1;
+// }
 
 console.log("Compose", compose(sum1, sum1)(5));
 
