@@ -20,6 +20,11 @@ const compose =
   (...args) =>
     f(g(...args));
 
+const pipe =
+  (f, g) =>
+  (...args) =>
+    g(f(...args));
+
 // console.log(
 //   "purchaseItem",
 //   purchaseItem(
@@ -31,10 +36,10 @@ const compose =
 // );
 
 let preparePurchase = purchaseItem(
-  emptyCart,
-  buyItem,
+  addItemToCart,
   applyTaxToItems,
-  addItemToCart
+  buyItem,
+  emptyCart
 );
 console.log("preparePurchase", preparePurchase);
 console.log(
@@ -43,8 +48,11 @@ console.log(
 );
 
 function purchaseItem(...fns) {
-  return fns.reduce(compose);
+  return fns.reduce(pipe);
 }
+// function purchaseItem(...fns) {
+//   return fns.reduce(compose);
+// }
 
 function addItemToCart(user, item) {
   amazonHistory.push(user);
