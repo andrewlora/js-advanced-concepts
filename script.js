@@ -251,3 +251,74 @@ sub(2, 3);
 add(2, 3);
 mul(2, 3);
 div(2, 3);
+
+const a = function () {
+  console.log("a", this);
+  const b = function () {
+    console.log("b", this);
+    const c = {
+      hi: function () {
+        console.log("c", this);
+      },
+    };
+    c.hi();
+  };
+  b();
+};
+a();
+
+var obj = {
+  i: 10,
+  b: () => console.log(this),
+  c: function () {
+    console.log(this);
+  },
+};
+obj.b();
+obj.c();
+
+const a = function () {
+  console.log("a", this);
+  const b = function () {
+    console.log("b", this);
+    const c = {
+      hi: () => {
+        console.log("c", this);
+      },
+    };
+    c.hi();
+  };
+  b();
+};
+a();
+
+const obj = {
+  name: "Billy",
+  sing() {
+    console.log("normal this", this);
+    console.log("normal args", arguments);
+    return "lalalal " + this.name;
+  },
+  singAgain() {
+    return this.sing() + " !";
+  },
+  singArrow: () => {
+    console.log("arrow this", this);
+    console.log("arrow args", arguments);
+  },
+};
+console.log(obj.sing());
+console.log(obj.singAgain());
+console.log(obj.singArrow());
+
+const obj = {
+  name: "Billy",
+  sing() {
+    console.log("a", this);
+    var anotherFunction = () => {
+      console.log("b", this);
+    };
+    anotherFunction();
+  },
+};
+obj.sing();

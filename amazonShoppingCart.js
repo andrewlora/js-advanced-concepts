@@ -20,14 +20,26 @@ const compose =
   (...args) =>
     f(g(...args));
 
+// console.log(
+//   "purchaseItem",
+//   purchaseItem(
+//     emptyCart,
+//     buyItem,
+//     applyTaxToItems,
+//     addItemToCart
+//   )(user, { name: "Laptop", price: 344 })
+// );
+
+let preparePurchase = purchaseItem(
+  emptyCart,
+  buyItem,
+  applyTaxToItems,
+  addItemToCart
+);
+console.log("preparePurchase", preparePurchase);
 console.log(
-  "purchaseItem",
-  purchaseItem(
-    emptyCart,
-    buyItem,
-    applyTaxToItems,
-    addItemToCart
-  )(user, { name: "Laptop", price: 344 })
+  "run preparePurchase",
+  preparePurchase(user, { name: "Laptop", price: 344 })
 );
 
 function purchaseItem(...fns) {
@@ -62,5 +74,16 @@ function emptyCart(user) {
   amazonHistory.push(user);
   return Object.assign({}, user, { cart: [] });
 }
+
+function refundItem(user, item) {
+  amazonHistory.push(
+    Object.assign({}, user, { cart: user.cart, purchases: user.purchases })
+  );
+  const { purchases } = user;
+  const refundItem = purchases.splice(item);
+  return Object.assign({}, user, { purchases: refundItem });
+}
+
+refundItem(user, { name: "laptop", price: 200 });
 
 console.log("amazon history", amazonHistory);
